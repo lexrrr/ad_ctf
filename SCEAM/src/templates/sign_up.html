@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<div class="login-wrapper">
+  <div class="content_container">
+    <form method="POST" style="margin: 20px">
+      <h1 align="center">Sign Up</h1>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="firstName">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter name"
+        />
+      </div>
+      <div style="width: 100%">
+        <div
+          class="form-group"
+          style="
+            float: left;
+            width: 50%;
+            text-align: center;
+            justify-content: center;
+          "
+        >
+          <label for="quality">Image Hosting Quality</label>
+          <div class="center-div-content">
+            <select name="quality" id="quality" style="width=100%">
+              <option value="1">Quick Blur</option>
+              <option value="0">Never full</option>
+              <option value="2">Advanced Blur</option>
+              <option value="3">Full Quality</option>
+            </select>
+          </div>
+        </div>
+        <div
+          class="form-group"
+          style="float: left; width: 50%; text-align: center"
+        >
+          <label for="vendor_lock">Vendor Lockin</label>
+          <div class="center-div-content">
+            <input
+              type="checkbox"
+              class="form-control"
+              id="vendor_lock"
+              name="vendor_lock"
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary form-button">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

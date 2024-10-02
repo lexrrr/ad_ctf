@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    container_name: wcyd
+    volumes:
+      - profile_pic_store:/var/www/html/uploads
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: "unless-stopped"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+
+  api:
+    build:
+      context: ./api
+    container_name: api_server
+    volumes:
+      - yaml_store:/app/uploads
+    expose:
+      - "5000"
+    restart: "unless-stopped"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+    
+  db:
+    image: mysql:8.0
+    volumes:
+      - mysql_db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: db_server
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: date
+      MYSQL_USER: date
+      MYSQL_PASSWORD: somepassword
+      MYSQL_EVENT_SCHEDULER: 'ON'
+    #ports:
+    #  - 5000:3306
+
+volumes:
+  mysql_db:
+  yaml_store:
+  profile_pic_store:

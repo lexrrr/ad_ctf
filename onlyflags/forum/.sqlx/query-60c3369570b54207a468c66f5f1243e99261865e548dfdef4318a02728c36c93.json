@@ -1,0 +1,47 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT id, username, content FROM post WHERE username = ?",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": {
+          "type": "Long",
+          "flags": "NOT_NULL | PRIMARY_KEY | AUTO_INCREMENT",
+          "char_set": 63,
+          "max_size": 11
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "username",
+        "type_info": {
+          "type": "VarString",
+          "flags": "NOT_NULL | NO_DEFAULT_VALUE",
+          "char_set": 224,
+          "max_size": 200
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "content",
+        "type_info": {
+          "type": "Blob",
+          "flags": "NOT_NULL | BLOB | NO_DEFAULT_VALUE",
+          "char_set": 224,
+          "max_size": 262140
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "60c3369570b54207a468c66f5f1243e99261865e548dfdef4318a02728c36c93"
+}

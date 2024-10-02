@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content%}
+    <h1 align="center">Group Messages</h1>
+    <div style="word-wrap: break-word;">
+    <ul class="list-group list-group-flush" id="messages">
+      {% for message in messages %}
+      <li class="list-group-item">
+        {{ message.encrypted_data }}
+        {{ message.time }}
+      </li>
+      {% endfor %}
+    </ul>
+    </div>
+    {% endblock %}

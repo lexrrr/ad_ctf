@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}BACKUP{% endblock %} 
+
+<!-- {% block head %}
+    <link rel="stylesheet" href="path/to/your-specific.css">
+{% endblock %} -->
+
+{% block content%}
+    <form method="GET">
+      <h1 align="center">Profil</h1>
+      <div style="word-wrap: break-word;">
+      <ul class="list-group list-group-flush" id="userlist">
+        <li class="list-group-item">Email: {{ user.email }}</li>
+        <li class="list-group-item">Name: {{ user.name }}</li>
+        <li class="list-group-item">Status: {{ user.status }}</li>
+      </ul>
+      </div>
+    </form>
+    <form method="POST">
+        {% if groups %}
+        <h1 align="center">Groups you created</h1>
+        <div style="word-wrap: break-word;">
+            <ul class="list-group list-group-flush" id="userlist">
+            {% for group in groups %}
+              <li class="list-group-item">Group Name: {{ group.name }}</li>
+              <li class="list-group-item">Group Key (ONLY SHARE WITH TRUSTWORTHY PEOPLE): {{ group.group_key }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+        {% endif %}
+
+        <h1 align="center">Your Keys</h1>
+        {% if user.private_key and user.public_key%}
+          <div style="word-wrap: break-word;">
+            <ul class="list-group list-group-flush" id="userlist">
+              <li class="list-group-item">
+                  Your Publickey:</br> 
+                  <pre style="font-family: 'Courier New', Courier, monospace;">{{ user.public_key_name }}</pre>
+                  Your Privatekey (DO NOT SHARE):</br>
+                  <pre style="font-family: 'Courier New', Courier, monospace;">{{ user.private_key }}</pre>
+              </li>
+            </ul>
+          </div>
+        {% else %}
+            <div class="form-group">
+                <label for="public_key">PublicKey</label>
+                <input
+                type="checkbox"
+                class="form-control"
+                id="public_key"
+                name="public_key"
+                />
+            </div>
+            <div align="center">
+              <button type="submit" class="btn btn-primary">Get Keys</button>
+            </div>
+        {% endif %}
+        <h1 align="center">Your Token</h1>
+        {% if user.token %}
+            <div style="word-wrap: break-word;">
+            <ul class="list-group list-group-flush" id="userlist">
+              <li class="list-group-item">Your Token: {{ user.token }}</li>
+            </ul>
+            </div>
+        {% else %}
+            <div class="form-group">
+                <label for="token">Token</label>
+                <input
+                type="checkbox"
+                class="form-control"
+                id="token"
+                name="token"
+                />
+            </div>
+            <div align="center">
+              <button type="submit" class="btn btn-primary">Get Token</button>
+            </div>
+        {% endif %}
+
+
+        <h1 align="center">Edit Profil</h1>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" name="status" id="status" class="form-control" placeholder="Change your status, so your friends can see them">
+        </div>
+        <div align="center">
+          <button type="submit" class="btn btn-primary">Add Changes</button>
+        </div>
+
+        <h1 align="center">Delete Profil</h1>
+        <div align="center">
+          <button type="button" class="btn btn-primary" onclick="activateLink()">Delete Profile</button>
+        </div>
+        <script>
+          function activateLink() {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+          }
+        </script>
+    </form>
+    {% endblock %}

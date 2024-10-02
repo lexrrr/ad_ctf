@@ -1,0 +1,38 @@
+version: '3'
+services:
+  scamfinder:
+    #build: .
+    image: gareck/scamfinder:latest
+    restart: unless-stopped
+    ports:
+      - "6222:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+      - api
+
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myDB
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_EVENT_SCHEDULER: 'ON'
+    volumes:
+      - ./db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    restart: unless-stopped
+    volumes:
+      - ./src:/app
+
+
+

@@ -1,0 +1,16 @@
+services:
+  decentralised-messenger-service-mysql:
+    container_name: decentralised-messenger-service-mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - decentralised-messenger-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: decentralised-messenger
+      MYSQL_USER: decentralised-messenger
+      MYSQL_PASSWORD: start
+    restart: unless-stopped
+volumes:
+  decentralised-messenger-db:

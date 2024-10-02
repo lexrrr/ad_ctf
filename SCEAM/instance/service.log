@@ -1,0 +1,55 @@
+2024-07-20 12:07:10,707 - ERROR - No images found in database.
+2024-07-20 12:07:10,708 - INFO - Home page accessed
+2024-07-20 12:07:46,439 - ERROR - No images found in database.
+2024-07-20 12:07:46,439 - INFO - Home page accessed
+2024-07-20 12:07:51,123 - ERROR - No images found in database.
+2024-07-20 12:07:51,124 - INFO - Home page accessed
+2024-07-20 12:10:27,833 - ERROR - No images found in database.
+2024-07-20 12:10:27,833 - INFO - Home page accessed
+2024-07-20 12:11:58,027 - ERROR - No images found in database.
+2024-07-20 12:11:58,028 - INFO - Home page accessed
+2024-07-20 12:12:19,288 - ERROR - No images found in database.
+2024-07-20 12:12:19,288 - INFO - Home page accessed
+2024-07-20 12:12:22,887 - ERROR - No images found in database.
+2024-07-20 12:12:22,887 - INFO - Home page accessed
+2024-07-20 12:13:09,444 - INFO - Attempted Registration: test@gmail.com test@gmail.com -----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL+0JS22OJRUshWnB3ITXs/mL2gy9EcL
+4ENITys408QH52v1VFP3cDTLeRKwJxwbu0waYPan0wgVfaIBgqS3C4kCAwEAAQ==
+-----END PUBLIC KEY-----
+ -----BEGIN RSA PRIVATE KEY-----
+MIIBOwIBAAJBAL+0JS22OJRUshWnB3ITXs/mL2gy9EcL4ENITys408QH52v1VFP3
+cDTLeRKwJxwbu0waYPan0wgVfaIBgqS3C4kCAwEAAQJBALgDd9yVGWJomjjmh+Mc
+bNorHj5rCshXwgFTm4rllYCIXEjOE1EZUkyOzHqAQCBtOJmAV7ZcKnZetGh07O5A
+zvECIQDj31u4cGxc36qsSwTN3kbtC3A4NlZ/gIT1G/VqdJRY0wIhANdd35H2eL/N
+xjXISPBgqP+DpMyCtPmqhkAwUsAg+VCzAiApCR4hVs2M5BJ+OHxC/pZTNc4dsVte
+Vqya31AQvbHBVQIhAIq+IwV5bxjBi+uh97tDyhuxxz0pB0XAIXTArM6xb2wZAiA2
+EYMGeMUSKaMFYBPzdTYnuVq2uOj1Uxy9UpWzcN/zJA==
+-----END RSA PRIVATE KEY-----
+ 1 False
+2024-07-20 12:13:09,506 - INFO - Registration Success: test@gmail.com test@gmail.com -----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL+0JS22OJRUshWnB3ITXs/mL2gy9EcL
+4ENITys408QH52v1VFP3cDTLeRKwJxwbu0waYPan0wgVfaIBgqS3C4kCAwEAAQ==
+-----END PUBLIC KEY-----
+ -----BEGIN RSA PRIVATE KEY-----
+MIIBOwIBAAJBAL+0JS22OJRUshWnB3ITXs/mL2gy9EcL4ENITys408QH52v1VFP3
+cDTLeRKwJxwbu0waYPan0wgVfaIBgqS3C4kCAwEAAQJBALgDd9yVGWJomjjmh+Mc
+bNorHj5rCshXwgFTm4rllYCIXEjOE1EZUkyOzHqAQCBtOJmAV7ZcKnZetGh07O5A
+zvECIQDj31u4cGxc36qsSwTN3kbtC3A4NlZ/gIT1G/VqdJRY0wIhANdd35H2eL/N
+xjXISPBgqP+DpMyCtPmqhkAwUsAg+VCzAiApCR4hVs2M5BJ+OHxC/pZTNc4dsVte
+Vqya31AQvbHBVQIhAIq+IwV5bxjBi+uh97tDyhuxxz0pB0XAIXTArM6xb2wZAiA2
+EYMGeMUSKaMFYBPzdTYnuVq2uOj1Uxy9UpWzcN/zJA==
+-----END RSA PRIVATE KEY-----
+ 1 False
+2024-07-20 12:13:14,084 - INFO - Downloaded Key: -----BEGIN RSA PRIVATE KEY-----
+MIIBOwIBAAJBAL+0JS22OJRUshWnB3ITXs/mL2gy9EcL4ENITys408QH52v1VFP3
+cDTLeRKwJxwbu0waYPan0wgVfaIBgqS3C4kCAwEAAQJBALgDd9yVGWJomjjmh+Mc
+bNorHj5rCshXwgFTm4rllYCIXEjOE1EZUkyOzHqAQCBtOJmAV7ZcKnZetGh07O5A
+zvECIQDj31u4cGxc36qsSwTN3kbtC3A4NlZ/gIT1G/VqdJRY0wIhANdd35H2eL/N
+xjXISPBgqP+DpMyCtPmqhkAwUsAg+VCzAiApCR4hVs2M5BJ+OHxC/pZTNc4dsVte
+Vqya31AQvbHBVQIhAIq+IwV5bxjBi+uh97tDyhuxxz0pB0XAIXTArM6xb2wZAiA2
+EYMGeMUSKaMFYBPzdTYnuVq2uOj1Uxy9UpWzcN/zJA==
+-----END RSA PRIVATE KEY-----
+
+2024-07-20 12:13:23,280 - INFO - User test@gmail.com <test@gmail.com> profile accessed by test@gmail.com <test@gmail.com>
+2024-07-20 12:13:23,773 - INFO - error accessing profile image 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+2024-07-20 12:13:23,782 - INFO - returning default profile image

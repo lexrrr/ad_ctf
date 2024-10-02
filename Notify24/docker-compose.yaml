@@ -1,0 +1,65 @@
+services:
+  backend:
+    build: .
+    environment:
+      TRUST_STORE: /app/truststore.jks
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: notify24
+      DB_USER: notify24
+      DB_PASSWORD: start
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - notify24-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: notify24
+      MYSQL_USER: notify24
+      MYSQL_PASSWORD: start
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    environment:
+      PUBLIC_BACKEND_URL: http://backend:6060
+      NODE_ENV: production
+      PROTOCOL_HEADER: x-forwarded-proto
+      HOST_HEADER: x-forwarded-host
+      PORT_HEADER: x-forwarded-port
+      ADDRESS_HEADER: True-Client-IP
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./reverseProxy/default.conf:/etc/nginx/nginx.conf
+      - ./reverseProxy/server.key:/etc/nginx/ssl/server.key
+      - ./reverseProxy/server.crt:/etc/nginx/ssl/server.crt
+      - ./reverseProxy/rootCA.crt:/etc/nginx/ssl/ca.crt
+    ports:
+      - 6060:6060
+      - 6061:6061
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+volumes:
+  notify24-db:

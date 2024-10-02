@@ -1,0 +1,16 @@
+FROM golang@sha256:829eff99a4b2abffe68f6a3847337bf6455d69d17e49ec1a97dac78834754bd6
+
+WORKDIR /root
+
+COPY ./backend/go.mod ./backend/go.sum ./backend/
+RUN go mod -C backend download
+
+COPY ./backend ./backend
+RUN go build -C backend -ldflags "-s -w" -o out/main
+
+COPY ./image ./image
+
+EXPOSE 6969/tcp
+
+ENTRYPOINT ["./backend/out/main", "-i", "./image"]
+

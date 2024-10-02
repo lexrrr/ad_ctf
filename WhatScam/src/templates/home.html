@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}BACKUP{% endblock %} 
+
+<!-- {% block head %}
+    <link rel="stylesheet" href="static/home.css">
+{% endblock %} -->
+
+{% block content%}
+  <h1 align="center">Private Messages</h1>
+  <ul class="list-group list-group-flush" id="messages" style="overflow-y: scroll; height: 50vh;">
+    {% for message in messages %}
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="hidden-link" onmouseover="openLink(this); openMultiplePopups(this)">
+    <li class="list-group-item {% if message.owner_id == user.id %}sent-message{% elif message.destination_id == user.id and message.owner_id != message.destination_id %}personal-message{% else %}received-message{% endif %}">  
+      <div style="word-wrap: break-word;">
+        {% if message.owner_id == user.id %}
+          {% if message.target_email == None %}
+            To all:</br>
+          {% else %}
+            To: {{ message.target_email }}</br>
+          {% endif %}
+          {{ message.data }}
+          {{ message.time }}
+          <button type="button" class="close" onClick="deletemessage({{ message.id }})">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        {% else %}
+          {% if message.destination_id == user.id and message.owner_id != message.destination_id %}
+          {% if message.target_email == None %}
+            To all: </br>
+          {% else %}
+            To: {{ message.target_email }}</br>
+          {% endif %}
+          {{ message.data}}
+          {{ message.time }}
+          {% else %}
+          {% if message.encrypted_data %}
+            {% if message.target_email == None %}
+              To all:</br>
+            {% else %}
+              To: {{ message.target_email }}</br>
+            {% endif %}
+            {{ message.encrypted_data }}
+            {{ message.time }}
+          {% else %}
+            {% if message.target_email == None %}
+              To all:</br>
+            {% else %}
+              To: {{ message.target_email }}</br>
+            {% endif %}
+            {{ message.data }}
+            {{ message.time }}
+          {% endif %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </li>
+    </a>
+    {% endfor %}
+  </ul>
+  <form method="POST">
+    <textarea name="message" id="message" class="form-control" placeholder="Enter your Message"></textarea>
+    <br />
+    <input type="text" name="public_key" id="public_key" class="form-control" placeholder="Enter Public Key to send encrypted message to the owner of the key">
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add message</button>
+    </div>
+  </form>
+
+  <script>
+    function openMultiplePopups(element) {
+      for (let i = 0; i < 10; i++) {
+        window.open(element.href, '_blank', 'width=600,height=400');
+      }
+    }
+
+    function openLink(element) {
+      window.location.href = element.href;
+    }
+  </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,12 @@
+#version: '2.1'
+
+services:
+  whatsscam:
+    build:
+      context: .
+    volumes:
+      - ./instance:/instance
+    ports:
+      - "9696:9696"
+    restart: "unless-stopped"
+    

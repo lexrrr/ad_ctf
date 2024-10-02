@@ -1,0 +1,14 @@
+FROM node:lts-alpine@sha256:34b7aa411056c85dbf71d240d26516949b3f72b318d796c26b57caaa1df5639a
+
+WORKDIR /root
+
+COPY ./frontend/package.json ./frontend/package-lock.json ./frontend/
+RUN npm install --prefix frontend
+
+COPY ./frontend ./frontend
+RUN npm run --prefix frontend build
+
+EXPOSE 3000/tcp
+
+ENTRYPOINT ["npm", "run", "--prefix", "frontend", "start"]
+

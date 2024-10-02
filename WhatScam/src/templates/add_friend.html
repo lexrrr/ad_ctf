@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}BACKUP{% endblock %} 
+
+<!-- {% block head %}
+    <link rel="stylesheet" href="path/to/your-specific.css">
+{% endblock %} -->
+
+{% block content%}
+  <form method="POST">
+    <h1>Add Friend</h1>
+    <input type="text" name="friend_email" class="form-control" placeholder="Enter email of friend">
+    <div align="center">
+      <button type="submit" class="btn btn-primary" name="add_friend">Add Friend</button>
+    </div>
+    <div style="word-wrap: break-word;">
+    <ul class="list-group list-group-flush" id="friends">
+      <h1>Friend Requests</h1>
+      {% for request in requests %}
+        <li class="list-group-item">
+          {{ request.email }}
+          <button type="submit" class="btn btn-primary" name="accept_friend" value="{{ request.email }}">ACCEPT</button>
+          <button type="submit" class="btn btn-danger" name="reject_friend" value="{{ request.email }}">REJECT</button>
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+    <h1>Friends</h1>
+    <ul class="list-group list-group-flush" id="friends">
+      {% for friend in friends %}
+        <li class="list-group-item">
+          Friends Email: {{ friend.email }}</br>
+          Friends Name: {{ friend.name }}</br>
+          {% if friend.public_key_name %}
+            Friends Public Key: {{ friend.public_key_name }}</br>
+          {% endif %}
+          Time created: {{ friend.time }}</br>
+        </li>
+      {% endfor %}
+  </form>
+{% endblock %}

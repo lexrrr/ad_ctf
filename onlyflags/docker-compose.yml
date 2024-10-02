@@ -1,0 +1,98 @@
+version: '3'
+services:
+  proxy:
+    build: ./proxy/
+    ports:
+      - "1080:1080"
+    networks:
+      db:
+        ipv4_address: 192.168.1.4
+      internal_net:
+    cap_add:
+      - CAP_NET_RAW
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./web/
+
+    ports:
+      - 9145:80
+    networks:
+      db:
+        ipv4_address: 192.168.1.3
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  db:
+    image: mariadb:latest
+    command: --event-scheduler=ON
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/:/var/lib/mysql:Z
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+    networks:
+      db:
+        ipv4_address: 192.168.1.2
+      db2:
+        ipv4_address: 192.168.2.2
+    healthcheck:
+      test:  ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      timeout: 10s
+      interval: 5s
+      retries: 10
+
+
+  echo:
+    build: ./echo/
+    networks:
+      - internal_net
+
+  premium-forum:
+    build: ./forum/
+    environment:
+      DATABASE_URL: "mysql://premium_forum@db/premium_forum"
+    networks:
+      db2:
+        ipv4_address: 192.168.2.3
+      internal_net:
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  open-forum:
+    build: ./forum/
+    environment:
+      DATABASE_URL: "mysql://open_forum@db/pod"
+      OPEN_FORUM: "true"
+    networks:
+      db2:
+        ipv4_address: 192.168.2.4
+      internal_net:
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+networks:
+  db:
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+  db2:
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+
+  internal_net:
+    name: test
+    internal: true
+    attachable: true
+    driver_opts:
+      'com.docker.network.container_iface_prefix': "asd"
+
